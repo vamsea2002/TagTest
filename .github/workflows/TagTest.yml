@@ -9,7 +9,6 @@ on:
 
   pull_request:
 
-  
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
@@ -23,42 +22,30 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: tj-actions/branch-names@v5.1
       - uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
-          ref: ${{ steps.branch-names.outputs.head_ref_branch }}
+
       # Runs a single command using the runners shell
       - name: Run a one-line script
-        run: echo Hello, world!     
-          
-      - name: Create Pull Request
-        id: cpr
+        run: echo Hello, world!
+
+      - name: extract git commit data
+        uses: rlespinasse/git-commit-data-action@v1.x
+
+      - name: Update author information
+        run: echo ${{ env.GIT_COMMIT_AUTHOR_NAME }} > AUTHOR
+
+      - name: Raise PR
         uses: peter-evans/create-pull-request@v3
         with:
-          token: ${{ secrets.PAT }}
-          commit-message: Update report
-          committer: GitHub <noreply@github.com>
-          author: ${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>
-          signoff: false
-          branch: main
-          delete-branch: false
-          title: '[Example] Update report'
-          body: |
-            Update report
-            - Updated with *today's* date            
-          labels: |
-            report
-            automated pr
-          assignees: vamsea2002
-          reviewers: vamsea2002
-          team-reviewers: |
-            owners
-            maintainers
-          milestone: 1
-          draft: false
+          branch: "auto-pr-branch"
+          base: main
+          title: "demo for auto pr"
+          committer: ${{ env.GIT_COMMIT_AUTHOR_NAME }} <${{ env.GIT_COMMIT_AUTHOR_EMAIL }}">
+          author: ${{ env.GIT_COMMIT_AUTHOR_NAME }} <${{ env.GIT_COMMIT_AUTHOR_EMAIL }}">
+          body: This is to show automatic PR creation
+          token: ${{ secrets.GITHUB_TOKEN }}
+          delete-branch: true
       - name: Check outputs
         run: |
           echo "Pull Request Number - ${{ steps.cpr.outputs.pull-request-number }}"
           echo "Pull Request URL - ${{ steps.cpr.outputs.pull-request-url }}"
-      
