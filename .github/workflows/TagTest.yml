@@ -54,7 +54,7 @@ jobs:
           echo previous_version ${{steps.tag_version.outputs.previous_version}}
           echo release_type ${{steps.tag_version.outputs.release_type}}
           echo changelog ${{steps.tag_version.outputs.changelog}}
-
+          echo ${{ github.event_name == 'pull_request' && true || false }}
       # - name: Create a GitHub release
       #   uses: ncipollo/release-action@v1
         
