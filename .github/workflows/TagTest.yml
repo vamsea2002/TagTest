@@ -55,6 +55,7 @@ jobs:
           echo release_type ${{steps.tag_version.outputs.release_type}}
           echo changelog ${{steps.tag_version.outputs.changelog}}
           echo ${{ github.event_name == 'pull_request' && true || false }}
+          echo "environment is ${{ github.event.inputs.environment }}"          
       # - name: Create a GitHub release
       #   uses: ncipollo/release-action@v1
         
