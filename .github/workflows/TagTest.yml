@@ -6,9 +6,9 @@ name: CI
 on:
   # Triggers the workflow on push or pull request events but only for the main branch
   push:
-    branches: [ main ]
+    branches: [ ${{ github.head_ref }} ]
   pull_request:
-    branches: [ main ]
+    branches: [ ${{ github.head_ref }} ]
   create:
     tags:
       - v*
@@ -47,6 +47,7 @@ jobs:
           # default_bump: major
           # custom_tag: 2.0.0.18
           tag_prefix: ''
+          dry_run: ${{ github.event_name == 'pull_request' && true || false }}
 
       - name: Create a GitHub release
         uses: ncipollo/release-action@v1
