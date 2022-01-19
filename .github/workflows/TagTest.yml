@@ -36,6 +36,7 @@ jobs:
 
       - name: Pull Request Action
         uses: vsoch/pull-request-action@1.0.18
+        if: github.ref = 'refs/heads/my-test-branch'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           PULL_REQUEST_BRANCH: "main"
