@@ -31,6 +31,8 @@ jobs:
         run: echo ${{ env.GIT_COMMIT_AUTHOR_NAME }} > AUTHORS
       - name: pull-request
         uses: TheRealWaldo/pull-request@v0.2.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           title: Automated-pull-request-from-my-test-branch
           base: main
