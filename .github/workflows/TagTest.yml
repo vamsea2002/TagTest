@@ -31,7 +31,8 @@ jobs:
         run: echo ${{ env.GIT_COMMIT_AUTHOR_NAME }} > AUTHORS
     
   create-pull:
-    runs-on: ubuntu-latest  
+    runs-on: ubuntu-latest
+    needs: [build]
     steps:
       - name: Pull Request Action
         if: github.ref == 'refs/heads/my-test-branch'
