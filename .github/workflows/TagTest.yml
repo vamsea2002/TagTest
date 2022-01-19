@@ -32,11 +32,7 @@ jobs:
       - name: pull-request
         uses: TheRealWaldo/pull-request@v0.2.0
         with:
-          json-opts: '{"dry-run": true}'
-          title: Automated pull request from my-test-branch
-          base: main
-          head: my-test-branch
-          assignee: vamsea2002
+          json-opts: '{"dry-run": true "title": Automated-pull-request-from-my-test-branch, "base": main, "head": my-test-branch, "assignee": vamsea2002}'
   # create-pull:
   #   runs-on: ubuntu-latest
   #   needs: [build]
