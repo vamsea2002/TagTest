@@ -39,3 +39,5 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           PULL_REQUEST_BRANCH: "master"
+          PULL_REQUEST_ASSIGNEES: vamsea2002
+          PULL_REQUEST_FROM_BRANCH: my-test-branch
