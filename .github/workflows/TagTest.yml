@@ -28,7 +28,8 @@ jobs:
         uses: rlespinasse/git-commit-data-action@v1.x
 
       - name: Update author information
-        run: echo ${{ env.GIT_COMMIT_AUTHOR_NAME }} > AUTHORS
+        run: echo ${{ env.GIT_COMMIT_AUTHOR_NAME }}
+        
       - name: pull-request
         uses: TheRealWaldo/pull-request@v0.2.0
         env:
