@@ -35,7 +35,7 @@ jobs:
         run: echo ${{ env.GIT_COMMIT_AUTHOR_NAME }} > AUTHORS
 
     create-pull-only-from-my-test-branch
-      - name: Pull Request Action
+        name: Pull Request Action
         uses: vsoch/pull-request-action@1.0.18
         if: github.ref = 'refs/heads/my-test-branch'
         env:
