@@ -38,6 +38,7 @@ jobs:
           base: main
           head: my-test-branch
           assignee: vamsea2002
+          body: ${{ env.GIT_COMMIT_MESSAGE_BODY }}
   # create-pull:
   #   runs-on: ubuntu-latest
   #   needs: [build]
